@@ -1,4 +1,5 @@
-# psl-probe
+# Probing Protein Language Model Representations for Subcellular
+Localization: Layer Depth, Sequence Locus, and the Role of Sorting Signals
 
 Layer-wise probing of protein language models (pLMs) for subcellular
 localization signals.
