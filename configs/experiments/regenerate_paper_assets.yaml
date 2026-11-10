@@ -1,0 +1,10 @@
+# Regenerates every figure and table in the manuscript from existing results.
+# Cheap (~30 s), idempotent, and touches no embeddings or probe outputs, so it is
+# the safe way to confirm the paper's assets match the results on disk.
+name: regenerate_paper_assets
+model_config: configs/esm2_650m.yaml
+stages:
+  - make_figures
+  - make_tables
+stage_args: {}
+overrides: []

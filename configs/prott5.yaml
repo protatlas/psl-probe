@@ -1,0 +1,15 @@
+base: base.yaml
+
+# ProtT5-XL-U50 encoder. Note the different tokenisation convention (whitespace
+# separated residues, no <cls> prefix), handled inside PLMWrapper.
+model:
+  hf_id: Rostlab/prot_t5_xl_uniref50
+  tag: prott5_xl
+  family: prott5
+  n_layers: 24
+  hidden_size: 1024
+  layers: null
+  max_length: 1024
+  batch_tokens: 8192
+  dtype: float16
+  output_attentions: false

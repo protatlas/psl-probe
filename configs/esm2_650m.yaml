@@ -1,0 +1,15 @@
+base: base.yaml
+
+# ESM-2 650M is the default probing target: the largest ESM-2 checkpoint whose
+# full 33-layer activations fit comfortably in 24 GB at fp16.
+model:
+  hf_id: facebook/esm2_t33_650M_UR50D
+  tag: esm2_650m
+  family: esm2
+  n_layers: 33
+  hidden_size: 1280
+  layers: null                   # null = every hidden state (embeddings + 33 blocks)
+  max_length: 1022               # ESM-2 positional limit is 1024 including <cls>/<eos>
+  batch_tokens: 16384
+  dtype: float16
+  output_attentions: false

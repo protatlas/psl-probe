@@ -1,0 +1,26 @@
+# Core numerics / DL --------------------------------------------------------
+torch>=2.4
+transformers>=4.44
+sentencepiece>=0.2.0        # required by ProtT5 tokenizer
+accelerate>=0.33
+
+# Bio / data ----------------------------------------------------------------
+biopython>=1.84
+pandas>=2.2
+numpy>=1.26
+scipy>=1.13
+scikit-learn>=1.5
+h5py>=3.11
+pyarrow>=16.0
+
+# Plotting / analysis -------------------------------------------------------
+matplotlib>=3.9
+seaborn>=0.13
+umap-learn>=0.5.6
+statsmodels>=0.14
+
+# Infra ---------------------------------------------------------------------
+pyyaml>=6.0
+tqdm>=4.66
+requests>=2.32
+rich>=13.7

@@ -1,0 +1,30 @@
+# Sequence-ablation sweep for Section 3.5, including the length-matched
+# internal-deletion control and the composition-preserving shuffle.
+# Each uncached condition costs one full encoder pass (~16 min at 650M).
+name: ablation_650m
+model_config: configs/esm2_650m.yaml
+
+stages:
+  - run_ablation
+
+stage_args:
+  run_ablation:
+    - "--layer"
+    - "33"
+    - "--seeds"
+    - "5"
+    - "--contrast"
+    - "internal_delete:70"
+    - "--conditions"
+    - "nterm_delete:10"
+    - "nterm_delete:20"
+    - "nterm_delete:40"
+    - "nterm_delete:70"
+    - "nterm_mask:10"
+    - "nterm_mask:20"
+    - "nterm_mask:40"
+    - "nterm_mask:70"
+    - "internal_delete:70"
+    - "shuffle_nterm:70"
+
+overrides: []

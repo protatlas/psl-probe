@@ -1,0 +1,14 @@
+base: base.yaml
+
+# Smallest scale point; also the fastest configuration for pipeline smoke tests.
+model:
+  hf_id: facebook/esm2_t12_35M_UR50D
+  tag: esm2_35m
+  family: esm2
+  n_layers: 12
+  hidden_size: 480
+  layers: null
+  max_length: 1022
+  batch_tokens: 65536
+  dtype: float16
+  output_attentions: false

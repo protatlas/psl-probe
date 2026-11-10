@@ -1,0 +1,14 @@
+# Model-scale comparison for Section 3.7 (ESM-2 35M / 150M / 650M).
+# ProtT5-XL is a separate experiment because it needs a different model config.
+# Run once prepare_data has produced the benchmark. Runtime: ~2.5 hours.
+name: scales_esm2_35m
+model_config: configs/esm2_35m.yaml
+
+stages:
+  - extract_embeddings
+  - run_probes
+
+stage_args:
+  run_probes: ["--seeds", "5"]
+
+overrides: []

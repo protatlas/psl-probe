@@ -1,0 +1,16 @@
+# No-language-model baseline for the Discussion's "distributed, compositional"
+# claim: probes fitted to explicit sequence composition under exactly the probing
+# protocol of Section 2.3, so the scores sit on the same scale as a pLM layer.
+# Cheap -- no encoder pass, a few minutes for the whole sweep.
+name: composition_baseline
+model_config: configs/esm2_650m.yaml
+
+stages:
+  - run_composition_baseline
+
+stage_args:
+  run_composition_baseline:
+    - "--seeds"
+    - "5"
+
+overrides: []

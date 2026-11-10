@@ -1,0 +1,14 @@
+base: base.yaml
+
+# Scale comparison point.
+model:
+  hf_id: facebook/esm2_t30_150M_UR50D
+  tag: esm2_150m
+  family: esm2
+  n_layers: 30
+  hidden_size: 640
+  layers: null
+  max_length: 1022
+  batch_tokens: 32768
+  dtype: float16
+  output_attentions: false

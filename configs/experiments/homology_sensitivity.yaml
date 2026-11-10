@@ -1,0 +1,13 @@
+# Appendix B.3: how much apparent performance homology leakage contributes.
+# Regenerates fold assignments at 50%/90% identity and at random, then probes
+# the existing embeddings at the reference layer. No re-embedding. ~10 minutes.
+name: homology_sensitivity
+model_config: configs/esm2_650m.yaml
+
+stages:
+  - make_split_variants
+
+stage_args:
+  make_split_variants: ["--variants", "id50", "id90", "random", "--threads", "8"]
+
+overrides: []

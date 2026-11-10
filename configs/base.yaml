@@ -1,0 +1,56 @@
+# Shared defaults. Model-specific files include this via `base: base.yaml`.
+seed: 20260905
+device: cuda
+num_workers: 8
+
+paths:
+  raw: datasets/raw
+  interim: datasets/interim
+  processed: datasets/processed
+  embeddings: results/embeddings
+  probes: results/probes
+  analysis: results/analysis
+  logs: results/logs
+  figures: visualization/figures
+
+data:
+  uniprot_release: current_release
+  kingdoms: [Eukaryota]          # [] disables the filter
+  min_length: 40
+  max_length: 4096
+  require_experimental_evidence: true
+  max_labels_per_protein: 3
+  homology_identity: 0.30        # MMseqs2 --min-seq-id
+  homology_coverage: 0.80
+  n_folds: 5                     # fold 4 is held out as the test partition
+  test_fraction: 0.20
+
+pooling:
+  strategies: [mean, nterm]
+  nterm_window: 70               # covers most signal and transit peptides
+  cterm_window: 30               # covers PTS1 and KDEL-type C-terminal motifs
+  keep_per_residue: false
+
+probe:
+  kind: linear                   # 'mlp' is the capacity control
+  hidden_dim: 256
+  dropout: 0.1
+  weight_decay: 1.0e-4
+  lr: 1.0e-3
+  epochs: 60
+  batch_size: 256
+  early_stopping_patience: 10
+  standardize: true
+  control_task: true
+  control_seeds: 3
+  class_weighting: balanced
+
+analysis:
+  run_cka: true
+  cka_max_proteins: 4000
+  run_attention: true
+  attention_max_proteins: 2000
+  run_ablation: true
+  ablation_prefixes: [0, 10, 20, 40, 70]
+  bootstrap_samples: 1000
+  confidence_level: 0.95

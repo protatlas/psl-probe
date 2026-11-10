@@ -1,0 +1,23 @@
+# Primary experiment: the ESM-2 650M results reported in Sections 3.2-3.6.
+# Expected runtime on an RTX 4090: ~1.5 hours after prepare_data.
+name: main_650m
+model_config: configs/esm2_650m.yaml
+
+stages:
+  - prepare_data
+  - extract_embeddings
+  - run_probes
+  - run_analysis
+  - run_pooling_contrast
+  - make_figures
+  - make_tables
+
+stage_args:
+  prepare_data: ["--threads", "8"]
+  run_probes: ["--seeds", "5"]
+  run_pooling_contrast: ["--layer", "33", "--reference", "mean",
+                         "--comparison", "nterm", "--seeds", "5"]
+  run_analysis: ["--decoy-draws", "5"]
+
+overrides:
+  - analysis.attention_max_proteins=10000

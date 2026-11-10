@@ -1,0 +1,33 @@
+# Fast end-to-end check: ESM-2 35M, capped Swiss-Prot parse, few epochs.
+# Exercises every stage in minutes and is the recommended first command for a
+# fresh checkout. Expected runtime on an RTX 4090: ~8 minutes.
+name: smoke
+model_config: configs/esm2_35m.yaml
+
+stages:
+  - prepare_data
+  - extract_embeddings
+  - run_probes
+  - run_analysis
+  - make_figures
+  - make_tables
+
+stage_args:
+  prepare_data: ["--limit", "5000", "--threads", "8"]
+  run_probes: ["--seeds", "2"]
+  run_analysis: ["--skip-attention"]
+
+# Smoke writes to its own directories throughout. Pointing it at the default
+# paths would overwrite the full 35,985-protein benchmark and the result tables
+# the manuscript cites with a 5,000-entry toy subset.
+overrides:
+  - paths.processed=datasets/processed_smoke
+  - paths.embeddings=results/embeddings_smoke
+  - paths.probes=results/probes_smoke
+  - paths.analysis=results/analysis_smoke
+  - paths.figures=visualization/figures_smoke
+  - paths.tables=latex/tables_smoke
+  - data.homology_identity=0.5
+  - probe.epochs=10
+  - probe.control_seeds=1
+  - analysis.bootstrap_samples=100
